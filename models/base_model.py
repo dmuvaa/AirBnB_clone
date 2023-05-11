@@ -1,5 +1,8 @@
 #!/usr/bin/env
 
+import uuid
+from datetime import datetime
+
 """Creates a creates a class for the airbnbconsole project."""
 
 
