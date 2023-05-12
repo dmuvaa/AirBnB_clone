@@ -23,11 +23,11 @@ class FileStorage:
     def save(self):
         """func method to serialize object to JSON file path."""
         with open(self.__file_path, 'w') as f:
-            json.dump({k: v.to_dict() /
-                for k, v in self.__objects.items()}, f)
+            json.dump({k: v.to_dict() for k, v in self.__objects.items()}, f)
 
     def reload(self):
         """func method to deserialize JSON file."""
+        from models.base_model import BaseModel
         if os.path.isfile(self.__file_path):
             with open(self.__file_path, 'r') as f:
                 objs = json.load(f)
