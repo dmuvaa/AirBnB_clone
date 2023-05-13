@@ -30,6 +30,9 @@ class FileStorage:
         from models.base_model import BaseModel
         if os.path.isfile(self.__file_path):
             with open(self.__file_path, 'r') as f:
-                objs = json.load(f)
+                try:
+                    objs = json.load(f)
+                except json.JSONDecodeError:
+                    objs = {}
             for k, v in objs.items():
                 self.__objects[k] = BaseModel(**v)
