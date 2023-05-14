@@ -9,8 +9,8 @@ from datetime import datetime
 class BaseModel:
     """class that will be the base model to be inherited."""
     def __init__(self, *args, **kwargs):
-        from models import storage
         """Function to initialize the BaseModel1 instance."""
+        from models import storage
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
@@ -30,6 +30,7 @@ class BaseModel:
 
     def save(self):
         """update the attr to the current datetime."""
+        from models import storage
         self.updated_at = datetime.now()
         storage.save()
 

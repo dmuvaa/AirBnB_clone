@@ -4,6 +4,7 @@
 
 import cmd
 from models.base_model import BaseModel
+import models
 from models import classes
 import shlex
 
@@ -34,8 +35,8 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         elif args[0] in classes:
             key = args[0] + "." + args[1]
-            if key in storage.all():
-                print(storage.all()[key])
+            if key in models.storage.all():
+                print(models.storage.all()[key])
             else:
                 print("** no instance found **")
         else:
@@ -43,14 +44,14 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """This method updates an instance."""
-        arg = shlex.split(arg)
+        args = shlex.split(arg)
         if len(args) == 0:
             print("** class name missing **")
         elif len(args) == 1:
             print("** instance id missing **")
         elif args[0] in classes:
             key = args[0] + "." + args[1]
-            if key not in storage.all():
+            if key not in models.storage.all():
                 print("** no instance found **")
             elif len(args) == 2:
                 print("** attribute name missing **")
