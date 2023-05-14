@@ -3,8 +3,8 @@
 """creates a class for the comamand line interpreter."""
 
 import cmd
-import models
 from models.base_model import BaseModel
+from models import classes
 import shlex
 
 
@@ -18,8 +18,8 @@ class HBNBCommand(cmd.Cmd):
         args = shlex.split(arg)
         if len(args) == 0:
             print("** class name missing **")
-        elif args[0] in models.classes:
-            instance = models.classes[args[0]]()
+        elif args[0] in classes:
+            instance = classes[args[0]]()
             instance.save()
             print(instance.id)
         else:
@@ -32,10 +32,10 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif len(args) == 1:
             print("** instance id missing **")
-        elif args[0] in models.classes:
+        elif args[0] in classes:
             key = args[0] + "." + args[1]
-            if key in models.storage.all():
-                print(models.storage.all()[key])
+            if key in storage.all():
+                print(storage.all()[key])
             else:
                 print("** no instance found **")
         else:
@@ -48,9 +48,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         elif len(args) == 1:
             print("** instance id missing **")
-        elif args[0] in models.classes:
+        elif args[0] in classes:
             key = args[0] + "." + args[1]
-            if key not in models.storage.all():
+            if key not in storage.all():
                 print("** no instance found **")
             elif len(args) == 2:
                 print("** attribute name missing **")
@@ -85,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             for instance in models.storage.all().values():
                 print(instance)
-        elif args[0] in models.classes:
+        elif args[0] in classes:
             for key, instance in models.storage.all().items():
                 if args[0] in key:
                     print(instance)
