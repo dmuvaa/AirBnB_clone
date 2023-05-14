@@ -25,8 +25,8 @@ class BaseModel:
 
     def __str__(self):
         """function that returns the string representation of BaseModel11."""
-        return "[{}] ({}) {}"\
-                .format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+                self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """update the attr to the current datetime."""

@@ -105,5 +105,6 @@ class HBNBCommand(cmd.Cmd):
         """passes and empty line."""
         pass
 
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
