@@ -40,4 +40,4 @@ class FileStorage:
                 if v['__class__'] == 'User':
                     self.__objects[k] = User(**v)
                 else:
-                self.__objects[k] = BaseModel(**v)
+                    self.__objects[k] = BaseModel(**v)
