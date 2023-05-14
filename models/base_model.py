@@ -2,7 +2,6 @@
 
 import uuid
 from datetime import datetime
-from models import storage
 
 """Creates a creates a class for the airbnbconsole project."""
 
@@ -10,6 +9,7 @@ from models import storage
 class BaseModel:
     """class that will be the base model to be inherited."""
     def __init__(self, *args, **kwargs):
+        from models import storage
         """Function to initialize the BaseModel1 instance."""
         if kwargs:
             for key, value in kwargs.items():
