@@ -12,7 +12,7 @@ from models.review import Review
 from models.engine.file_storage import FileStorage
 
 classes = {"BaseModel": BaseModel, "User": User, "State": State,
-        ""City": City, "Amenity": Amenity, "Place": Place,
+        "City": City, "Amenity": Amenity, "Place": Place,
         "Review": Review}
 
 storage = FileStorage()
