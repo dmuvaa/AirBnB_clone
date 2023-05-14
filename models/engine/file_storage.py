@@ -6,6 +6,11 @@ import json
 import os
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
@@ -37,7 +42,18 @@ class FileStorage:
                 except json.JSONDecodeError:
                     objs = {}
             for k, v in objs.items():
-                if v['__class__'] == 'User':
-                    self.__objects[k] = User(**v)
-                else:
+                class_name = v['__class__']
+                if class_name == 'BaseModel':
                     self.__objects[k] = BaseModel(**v)
+                elif class_name == 'User':
+                    self.__objects[k] = User(**v)
+                elif class_name == 'State':
+                    self.__objects[k] = State(**v)
+                elif class_name == 'City':
+                    self.__objects[k] = City(**v)
+                elif class_name == 'Amenity':
+                    self.__objects[k] = Amenity(**v)
+                elif class_name == 'Place':
+                    self.__objects[k] = Place(**v)
+                elif class_name == 'Review':
+                    self.__objects[k] = Review(**v)
