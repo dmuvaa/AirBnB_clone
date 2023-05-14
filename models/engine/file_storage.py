@@ -5,6 +5,7 @@
 import json
 import os
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -36,4 +37,7 @@ class FileStorage:
                 except json.JSONDecodeError:
                     objs = {}
             for k, v in objs.items():
+                if v['__class__'] == 'User':
+                    self.__objects[k] = User(**v)
+                else:
                 self.__objects[k] = BaseModel(**v)
