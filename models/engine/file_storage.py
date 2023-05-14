@@ -13,7 +13,7 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        """."""
+        """class that returns models dict"""
         return self.__objects
 
     def new(self, obj):
