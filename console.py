@@ -140,6 +140,24 @@ class HBNBCommand(cmd.Cmd):
                 if id_str:
                     command_str = args[0] + " " + id_str
                     self.do_destroy(command_str)
+                else:
+                    print("** instance id missing **")
+            elif command.startswith("update(") and command.endswith(")"):
+                update_args = command[7:-1].split(",")  # Split
+                if len(update_args) == 3:
+                    id_str = update_args[0].strip()
+                    attribute_name = update_args[1].strip()
+                    attribute_value = update_args[2].strip()
+                    if id_str:
+                        command_str = (
+                                args[0] + " " +
+                                id_str + " " +
+                                attribute_name + " " +
+                                attribute_value
+                        )
+                        self.do_update(command_str)
+                    else:
+                        print("** instance id missing **")
             else:
                 print("** Unknown command **")
         else:
