@@ -105,11 +105,28 @@ class HBNBCommand(cmd.Cmd):
         """passes and empty line."""
         pass
 
+    def do_count(self, arg):
+        """method that counts class instances."""
+        args = shlex.split(arg)
+        count = 0
+        if len(args) == 0:
+            print("** class name missing **")
+        elif args[0] in classes:
+            for key in models.storage.all():
+                if args[0] in key:
+                    count += 1
+            print(count)
+        else:
+            print("** class doesn't exist **")
+
     def default(self, arg):
         """method to hamdle class arguments."""
         args = arg.split(".")
-        if len(args) > 1 and args[1] == "all()":
-            self.do_all(args[0])
+        if len(args) > 1:
+            if args[1] == "all()":
+                self.do_all(args[0])
+            elif args[1] == "count()":
+                self.do_count(args[0])
 
 
 if __name__ == '__main__':
