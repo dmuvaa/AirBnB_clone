@@ -143,17 +143,19 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** instance id missing **")
             elif command.startswith("update(") and command.endswith(")"):
-                update_args = command[7:-1].split(",", 1)  # Split
-                if len(update_args) == 2:
+                update_args = command[7:-1].split(",")  # Split
+                if len(update_args) == 3:
                     id_str = update_args[0].strip()
-                    try:
-                        attribute_dict = eval(update_args[1].strip())
-                    except (SyntaxError, NameError):
-                        print("** Invalid dictionary representation **")
-                        return
+                    attribute_name = update_args[1].strip()
+                    attribute_value = update_args[2].strip()
                     if id_str:
-                        command_str = args[0] + " " + id_str
-                        self.do_update_dict(command_str, attribute_dict)
+                        command_str = (
+                                args[0] + " " +
+                                id_str + " " +
+                                attribute_name + " " +
+                                attribute_value
+                        )
+                        self.do_update(command_str)
                     else:
                         print("** instance id missing **")
                 else:
