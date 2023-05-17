@@ -165,25 +165,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
-    def do_update_dict(self, arg, attribute_dict):
-        """method to update instance based on dict."""
-        args = shlex.split(arg)
-        if len(args) == 0:
-            print("** class name missing **")
-        elif len(args) == 1:
-            print("** instance id missing **")
-        elif args[0] in classes:
-            key = args[0] + "." + args[1]
-            if key not in models.storage.all():
-                print("** no instance found **")
-            else:
-                instance = models.storage.all()[key]
-                for attr, value in attribute_dict.items():
-                    setattr(instance, attr, value)
-                instance.save()
-        else:
-            print("** class doesn't exist **")
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
