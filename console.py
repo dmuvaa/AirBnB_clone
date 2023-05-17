@@ -127,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
                 self.do_all(args[0])
             elif args[1] == "count()":
                 self.do_count(args[0])
-            elif args[1].startswith("show("):
+            elif args[1].startswith == "show()":
                 id_str = args[1][5:-2]
                 command_str = args[0] + " " + id_str
                 self.do_show(command_str)
