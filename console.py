@@ -105,6 +105,12 @@ class HBNBCommand(cmd.Cmd):
         """passes and empty line."""
         pass
 
+    def default(self, arg):
+        """method to hamdle class arguments."""
+        args = arg.split(".")
+        if len(args) > 1 and args[1] == "all()":
+            self.do_all(args[0])
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
