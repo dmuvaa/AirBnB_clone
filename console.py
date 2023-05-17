@@ -123,14 +123,29 @@ class HBNBCommand(cmd.Cmd):
         """method to hamdle class arguments."""
         args = arg.split(".")
         if len(args) > 1:
-            if args[1] == "all()":
+            command = args[1].strip()
+            if command == "all()":
                 self.do_all(args[0])
-            elif args[1] == "count()":
+            elif command == "count()":
                 self.do_count(args[0])
+<<<<<<< HEAD
             elif args[1].startswith == "show()":
                 id_str = args[1][5:-2]
                 command_str = args[0] + " " + id_str
                 self.do_show(command_str)
+=======
+            elif command.startswith("show(") and command.endswith(")"):
+                id_str = command[5:-1].strip()
+                if id_str:
+                    command_str = args[0] + " " + id_str
+                    self.do_show(command_str)
+                else:
+                    print("** instance id missing **")
+            else:
+                print("** Unknown command **")
+        else:
+            print("** class name missing **")
+>>>>>>> dennisbranch
 
 
 if __name__ == '__main__':
