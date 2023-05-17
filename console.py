@@ -143,7 +143,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print("** instance id missing **")
             elif command.startswith("update(") and command.endswith(")"):
-                update_args = command[7:-1].split(",")  # Split
+                update_args = command[7:-1].split(",", 1)  # Split
                 if len(update_args) == 2:
                     id_str = update_args[0].strip()
                     try:
