@@ -135,6 +135,11 @@ class HBNBCommand(cmd.Cmd):
                     self.do_show(command_str)
                 else:
                     print("** instance id missing **")
+            elif command.startswith("destroy(") and command.endswith(")"):
+                id_str = command[8:-1].strip()  # Remove "destroy(" and ")"
+                if id_str:
+                    command_str = args[0] + " " + id_str
+                    self.do_destroy(command_str)
             else:
                 print("** Unknown command **")
         else:
